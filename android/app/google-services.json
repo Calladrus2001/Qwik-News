@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "243594470231",
+    "project_id": "cometlabs-57723",
+    "storage_bucket": "cometlabs-57723.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:243594470231:android:96dcb2a951eafc9c3a5412",
+        "android_client_info": {
+          "package_name": "com.example.comet_labs_task"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "243594470231-vmbrkkh2msnhbph7qgu9u5vbskdtat0t.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDSYHe3hOngCUNOJzLGibFIzhPuUW5chc4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "243594470231-vmbrkkh2msnhbph7qgu9u5vbskdtat0t.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "243594470231-4hi8puuua5igppbcia7vd242gir9o56l.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.cometLabsTask"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
