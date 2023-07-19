@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:comet_labs_task/Views/Home.dart';
+import 'package:comet_labs_task/Views/Onboarding.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void _navigateToHomeScreen() {
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(
-        builder: (_) => HomeScreen(),
+        builder: (_) => OnboardingScreen(),
       ),
     );
   }

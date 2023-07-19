@@ -1,5 +1,5 @@
 import 'package:comet_labs_task/Utils/colors.dart';
-import 'package:comet_labs_task/Views/NewsView.dart';
+import 'package:comet_labs_task/Views/Home.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -28,7 +28,7 @@ class _AuthScreenState extends State<AuthScreen> {
           stream: FirebaseAuth.instance.authStateChanges(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return const NewsView();
+              return const HomeView();
             } else {
               return SingleChildScrollView(
                 child: Column(

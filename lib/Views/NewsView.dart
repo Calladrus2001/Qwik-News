@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 
-class NewsView extends StatefulWidget {
-  const NewsView({super.key});
+class NewsScreen extends StatefulWidget {
+  const NewsScreen({super.key});
 
   @override
-  State<NewsView> createState() => _NewsViewState();
+  State<NewsScreen> createState() => _NewsScreenState();
 }
 
-class _NewsViewState extends State<NewsView> {
+class _NewsScreenState extends State<NewsScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Center(child: Text("News")),
-    );
+    return Center(child: Text("News"),);
   }
 }

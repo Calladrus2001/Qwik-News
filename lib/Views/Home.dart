@@ -1,44 +1,50 @@
-import 'package:comet_labs_task/Utils/widgets/LogInWithAccountButton.dart';
-import 'package:comet_labs_task/Utils/widgets/SignUpWithGoogleButton.dart';
+import 'package:comet_labs_task/Utils/colors.dart';
+import 'package:comet_labs_task/Views/CommunityView.dart';
+import 'package:comet_labs_task/Views/NewsView.dart';
+import 'package:comet_labs_task/Views/ProfileView.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<HomeView> createState() => _HomeViewState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeViewState extends State<HomeView> {
+  int index = 1;
   @override
   Widget build(BuildContext context) {
+    List<Widget> bodyPages = [const ProfileScreen(), const NewsScreen(), const CommunityScreen()];
     return Scaffold(
-      backgroundColor: Colors.black,
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Colors.lightGreen.shade900, // Light green
-              Colors.green.shade900,      // Forest green
-              Colors.black,               // Black
-            ],
-            stops: const [0.1, 0.2, 1.0],
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-          ),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.white,
+          currentIndex: index,
+          selectedItemColor: primaryAccent,
+          unselectedItemColor: Colors.grey,
+          showUnselectedLabels: false,
+          items: const [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.account_circle_rounded),
+                label: "Your Profile"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.speaker_notes_outlined), label: "News"),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.group), label: "Community"),
+          ],
+          onTap: (int _index) {
+            setState(() {
+              index = _index;
+            });
+          },
         ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 14),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              SignUpWithGoogleButton(),
-              const SizedBox(height: 10.0), // Add spacing between the buttons
-              LogInWithMyAccountButton(),
-            ],
-          ),
-        ),
-      ),
-    );
+        body: Stack(
+          children: [
+            IndexedStack(
+              index: index,
+              children: bodyPages,
+            ),
+          ],
+        ));
   }
 }
