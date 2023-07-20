@@ -1,16 +1,28 @@
-# comet_labs_task
+# Qwik News
 
-A new Flutter project.
+Stay Informed, Stay Qwik: Your One-Stop Destination for Breaking News
 
-## Getting Started
+![plot](./image.jpeg)
 
-This project is a starting point for a Flutter application.
+# Features
+ - Basic
+     - Responsive Design
+     - ~~Splash Screen with Fade Effect~~
+     - ~~Loading, Refresh, Retry Indicators~~
+     - ~~Code Modularisation~~
+     - ~~Null Safety and Error Handling~~
+ - Advanced
+   - Multiple API Keys
+   - ~~Backend Service Integration~~ (Firebase)
+     - ~~Auth~~
+     - Bookmarks
+   - ~~Search~~
+   - ~~Splash Screen~~
+   - ~~Custom UI~~
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# Instructions
+ - Get your `NEWS_API_KEY` from the website and save it in `lib/Utils/constants.dart`
+ - Run `flutter pub get` to acquire dependencies.
+ - Run App.
+   
+[Video Demo](https://youtu.be/S9DIhaAqEJ8)
