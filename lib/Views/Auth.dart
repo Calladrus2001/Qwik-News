@@ -59,9 +59,9 @@ class _AuthScreenState extends State<AuthScreen> {
                         ),
                       ],
                     ),
-                    Text("Code:Aegis",
+                    Text("Qwik News",
                         style: TextStyle(
-                            color: primaryAccent, letterSpacing: 3, fontSize: 24)),
+                            color: primaryAccent, letterSpacing: 2, fontSize: 24)),
                     Form(
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
