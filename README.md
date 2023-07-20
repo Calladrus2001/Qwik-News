@@ -25,4 +25,4 @@ Stay Informed, Stay Qwik: Your One-Stop Destination for Breaking News
  - Run `flutter pub get` to acquire dependencies.
  - Run App.
    
-[Video Demo](https://youtu.be/S9DIhaAqEJ8)
+[Video Demo](https://youtu.be/3UQmoQjSU3o)
