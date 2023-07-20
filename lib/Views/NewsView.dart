@@ -18,70 +18,85 @@ class _NewsScreenState extends State<NewsScreen> {
     return SafeArea(
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 10),
-        child: Column(
+        child: Stack(
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            Column(
               children: [
-                Text("Qwik News",
-                    style: TextStyle(
-                        color: primaryAccent,
-                        letterSpacing: -1,
-                        fontWeight: FontWeight.w700,
-                        fontSize: 28)),
-                CircleAvatar(
-                  minRadius: 20,
-                  backgroundColor: Colors.grey.shade100,
-                  child: GestureDetector(
-                    child: Icon(
-                      Icons.search,
-                      color: Colors.grey.shade700,
-                    ),
-                    onTap: () {
-                      //TODO: Search
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text("Qwik News",
+                        style: TextStyle(
+                            color: primaryAccent,
+                            letterSpacing: -1,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 28)),
+                    CircleAvatar(
+                      minRadius: 20,
+                      backgroundColor: Colors.grey.shade100,
+                      child: GestureDetector(
+                        child: Icon(
+                          Icons.search,
+                          color: Colors.grey.shade700,
+                        ),
+                        onTap: () {
+                          //TODO: Search
+                        },
+                      ),
+                    )
+                  ],
+                ),
+                Expanded(
+                  child: FutureBuilder<NewsModel>(
+                    future: NewsApiClient().fetchTopHeadlines(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return CentralProgressIndicator();
+                      } else if (snapshot.hasError) {
+                        return Center(child: Column(
+                          children: [
+                            const Expanded(child: SizedBox(height: 1)),
+                            const Text("Oops! Something went wrong.", style: TextStyle(color: Colors.grey)),
+                            GestureDetector(
+                              child: Chip(
+                                label: Text("Retry", style: TextStyle(color: primaryAccent)),
+                                backgroundColor: Colors.white,
+                                elevation: 2.0,
+                              ),
+                              onTap: ()  {
+                                NewsApiClient().fetchTopHeadlines();
+                                setState(() {});
+                              },
+                            ),
+                            const Expanded(child: SizedBox(height: 1)),
+                          ],
+                        ));
+                      } else {
+                        return ListView.builder(
+                          itemCount: snapshot.data?.articles.length ?? 0,
+                          itemBuilder: (context, index) {
+                            final article = snapshot.data!.articles[index];
+                            return NewsCard(article: article);
+                          },
+                        );
+                      }
                     },
                   ),
-                )
+                ),
               ],
             ),
-            Expanded(
-              child: FutureBuilder<NewsModel>(
-                future: NewsApiClient().fetchTopHeadlines(),
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.waiting) {
-                    return CentralProgressIndicator();
-                  } else if (snapshot.hasError) {
-                    return Center(child: Column(
-                      children: [
-                        const Expanded(child: SizedBox(height: 1)),
-                        const Text("Oops! Something went wrong.", style: TextStyle(color: Colors.grey)),
-                        GestureDetector(
-                          child: Chip(
-                            label: Text("Retry", style: TextStyle(color: primaryAccent)),
-                            backgroundColor: Colors.white,
-                            elevation: 2.0,
-                          ),
-                          onTap: ()  {
-                            NewsApiClient().fetchTopHeadlines();
-                            setState(() {});
-                          },
-                        ),
-                        const Expanded(child: SizedBox(height: 1)),
-                      ],
-                    ));
-                  } else {
-                    return ListView.builder(
-                      itemCount: snapshot.data?.articles.length ?? 0,
-                      itemBuilder: (context, index) {
-                        final article = snapshot.data!.articles[index];
-                        return NewsCard(article: article);
-                      },
-                    );
-                  }
-                },
-              ),
-            ),
+            Positioned(left: 1, right: 1, bottom: 8,
+                child: GestureDetector(
+                  child: CircleAvatar(minRadius: 20, backgroundColor: primaryAccent,
+                      child: Icon(Icons.refresh, color: Colors.white)),
+                  onTap: (){
+                    NewsApiClient().fetchTopHeadlines();
+                    setState(() {});
+                  },
+                )
+            )
           ],
+
         ),
       ),
     );
