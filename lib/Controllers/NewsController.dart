@@ -28,7 +28,7 @@ class NewsApiClient {
     final String baseUrl = "https://newsapi.org/v2/everything";
     try {
       final response = await http.get(
-        Uri.parse("$baseUrl?q=$query&apiKey=$apiKey&sortBy=publishedAt&pageSize=10"),
+        Uri.parse("$baseUrl?q=$query&apiKey=$apiKey&sortBy=publishedAt&pageSize=10&language=en"),
       );
 
       if (response.statusCode == 200) {

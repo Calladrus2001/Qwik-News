@@ -13,8 +13,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    _changeOpacity(0.5);
-    Timer(const Duration(seconds: 3), () {
+    Timer(const Duration(milliseconds: 100), () {
+      _changeOpacity(0.0);
+    });
+    Timer(const Duration(milliseconds: 1600), () {
       _navigateToHomeScreen();
     });
     super.initState();
