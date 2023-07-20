@@ -17,7 +17,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       children: [
         Center(
           child: GestureDetector(
-            child: Chip(label: Text("Sign Out", style: TextStyle(color: Colors.redAccent)),
+            child: const Chip(label: Text("Sign Out", style: TextStyle(color: Colors.redAccent)),
               backgroundColor: Colors.white,
               elevation: 5.0,
             ),
