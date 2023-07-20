@@ -1,6 +1,7 @@
 import 'package:comet_labs_task/Controllers/NewsController.dart';
 import 'package:comet_labs_task/Models/NewsModel.dart';
 import 'package:comet_labs_task/Utils/colors.dart';
+import 'package:comet_labs_task/Utils/widgets/CentralProgressIndicator.dart';
 import 'package:comet_labs_task/Utils/widgets/NewsCard.dart';
 import 'package:flutter/material.dart';
 
@@ -48,9 +49,26 @@ class _NewsScreenState extends State<NewsScreen> {
                 future: NewsApiClient().fetchTopHeadlines(),
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
-                    return const Center(child: CircularProgressIndicator());
+                    return CentralProgressIndicator();
                   } else if (snapshot.hasError) {
-                    return Center(child: Text('Error: ${snapshot.error}'));
+                    return Center(child: Column(
+                      children: [
+                        const Expanded(child: SizedBox(height: 1)),
+                        const Text("Oops! Something went wrong.", style: TextStyle(color: Colors.grey)),
+                        GestureDetector(
+                          child: Chip(
+                            label: Text("Retry", style: TextStyle(color: primaryAccent)),
+                            backgroundColor: Colors.white,
+                            elevation: 2.0,
+                          ),
+                          onTap: ()  {
+                            NewsApiClient().fetchTopHeadlines();
+                            setState(() {});
+                          },
+                        ),
+                        const Expanded(child: SizedBox(height: 1)),
+                      ],
+                    ));
                   } else {
                     return ListView.builder(
                       itemCount: snapshot.data?.articles.length ?? 0,
