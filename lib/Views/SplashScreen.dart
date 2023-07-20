@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:comet_labs_task/Views/Onboarding.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -23,11 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _navigateToHomeScreen() {
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (_) => OnboardingScreen(),
-      ),
-    );
+    Get.to(()=>const OnboardingScreen());
   }
 
   void _changeOpacity(double _to) {
